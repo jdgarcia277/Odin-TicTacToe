@@ -32,7 +32,6 @@ header{
 .player-container{
     height: 75px;
     width: 100vw;
-    border: solid black;
     display: flex;
     justify-content: space-around;
     align-items: center;
@@ -41,13 +40,35 @@ header{
 .game-container{
     height: 450px;
     width: 450px;
-    border: solid black;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     grid-template-rows: repeat(3, 1fr);
 }
 .cell{
     border:solid black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.blank{}
+.x{
+    background-image: url(/Images/X-tic.svg);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.o{
+    background-image: url(/Images/O-tac.svg);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    height: 100%;
+    width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
