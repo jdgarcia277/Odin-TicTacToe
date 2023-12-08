@@ -22,5 +22,33 @@ header{
     width:100vw;
     background-image: url(/Images/2dpaperbg.png);
     background-repeat: no-repeat;
-    background-position: center; 
+    background-position: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 50px; 
+}
+.player-container{
+    height: 75px;
+    width: 100vw;
+    border: solid black;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    gap: 20%;
+}
+.game-container{
+    height: 450px;
+    width: 450px;
+    border: solid black;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+}
+.cell{
+    border:solid black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
