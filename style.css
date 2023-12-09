@@ -45,12 +45,11 @@ header{
     grid-template-rows: repeat(3, 1fr);
 }
 .cell{
-    border:solid black;
     display: flex;
     justify-content: center;
     align-items: center;
+    box-sizing: border-box;
 }
-.blank{}
 .x{
     background-image: url(/Images/X-tic.svg);
     background-repeat: no-repeat;
@@ -72,4 +71,14 @@ header{
     display: flex;
     justify-content: center;
     align-items: center;
+}
+.border-br{
+    border-bottom: 2px solid black;
+    border-right: 2px solid black;
+}
+.border-b{
+    border-bottom: 2px solid black;
+}
+.border-r{
+    border-right: 2px solid black;
 }

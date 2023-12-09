@@ -14,9 +14,8 @@ const gameBoard = (function() {
             boardDiv.classList.add('cell'); //adding css class "cell"
             boardDiv.dataset.index = index; //tracking the index
 
-            switch(value){
+            switch(value){//add css for x || o
                 case 0:
-                    boardDiv.classList.add("blank");
                     boardDiv.addEventListener("click", handleCellClick)//adding event listener only to blank cells
                     break;
                 case 1:
@@ -26,8 +25,24 @@ const gameBoard = (function() {
                     boardDiv.classList.add("o");
                     break;
             }
-        parent.appendChild(boardDiv);
-        });
+            switch(index){//css for proper borders to make the board look like Tic Tac Toe
+                case 0://fall through cases, new technique I haven't used
+                case 1:
+                case 3:
+                case 4:
+                    boardDiv.classList.add("border-br");
+                    break;
+                case 2: 
+                case 5:
+                    boardDiv.classList.add("border-b");
+                    break;
+                case 6:
+                case 7:
+                    boardDiv.classList.add("border-r");
+                    break;
+            }
+            parent.appendChild(boardDiv);
+        })
     }
     function isCellEmpty(index) {
         return board[index] === 0;
