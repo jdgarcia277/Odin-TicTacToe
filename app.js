@@ -103,8 +103,59 @@ const gameLogic = (function (){
     };
 })();
 
+//player module
+const players = (function() {
+    let player1 = "Player 1";
+    let player2 = "Player 2";
+
+    function updatePlayerName() {
+        const player1Div = document.querySelector(".player1-name");
+        const player2Div = document.querySelector(".player2-name");
+        
+        player1Div.innerHTML = `
+            <form id="player1Form">
+                <input type="text" class="name-field" id="player1Field">
+                <button class="name-button" type="submit">Enter</button>
+            </form>`;
+        player2Div.innerHTML = `
+            <form id="player2Form">
+                <input type="text" class="name-field" id="player2Field">
+                <button class="name-button" type="submit">Enter</button>
+            </form>`;
+
+        const player1Form = document.querySelector("#player1Form");
+        const player2Form = document.querySelector("#player2Form");
+
+        player1Form.addEventListener("submit", function(event){
+            event.preventDefault(); // Prevent form submission
+            const name = document.querySelector("#player1Field").value;
+            player1 = name;
+            player1Form.innerHTML="";
+            player1Form.innerHTML=`
+                <h2>${player1}</h2>`;
+        });
+
+        player2Form.addEventListener("submit", function(event){
+            event.preventDefault(); // Prevent form submission
+            const name = document.querySelector("#player2Field").value;
+            player2 = name;
+            player2Form.innerHTML="";
+            player2Form.innerHTML=`
+                <h2>${player2}</h2>`;
+        });
+    }
+
+    return {
+        updatePlayerName: updatePlayerName
+    };
+})();
+
+
 document.addEventListener('DOMContentLoaded', (event) => {
     gameBoard.render();
 });
 const reset = document.querySelector("#reset");
 reset.addEventListener("click", gameLogic.resetGame);
+
+const playerChange = document.querySelector("#playerChange");
+playerChange.addEventListener("click", players.updatePlayerName);
