@@ -117,9 +117,11 @@ const gameLogic = (function (){
     }
     function announceWinner(player) {
         if (player === 1) {
-            alert("Player 1 Wins!!");
+            let name = players.getPlayer1Name();
+            alert(name + " Wins!!");
         } else if (player === 2) {
-            alert("Player 2 Wins!!");
+            let name = player.getPlayer2Name();
+            alert(name + " Wins!!");
         }
     }
     function makeMove(index) {
@@ -185,11 +187,16 @@ const players = (function() {
         });
     }
     function getPlayer1Name(){
-        
+        return player1;
+    }
+    function getPlayer2Name(){
+        return player2;
     }
 
     return {
-        updatePlayerName: updatePlayerName
+        updatePlayerName: updatePlayerName,
+        getPlayer1Name: getPlayer1Name,
+        getPlayer2Name: getPlayer2Name
     };
 })();
 
