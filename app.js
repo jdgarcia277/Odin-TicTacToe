@@ -59,12 +59,16 @@ const gameBoard = (function() {
         const index = event.target.dataset.index;
         gameLogic.makeMove(index);
     }
+    function getBoardState(){
+        return board;
+    }
 
     return {
         render: renderBoard,
         reset: resetBoard,
         updateCell: updateCell,
-        isCellEmpty: isCellEmpty
+        isCellEmpty: isCellEmpty,
+        getBoardState: getBoardState
     }
 })();
 
@@ -78,10 +82,46 @@ const gameLogic = (function (){
 
     }
 
-    function checkGameState(){//Implement win and draw logic
-
+    function checkGameState() {
+        let board = gameBoard.getBoardState(); 
+        // Function to check if all values in an array are equal and not 0 (empty)
+        const allEqual = (arr) => arr.every(val => val === arr[0] && val !== 0);
+    
+        // Check rows for win
+        for (let i = 0; i < 9; i += 3) {
+            if (allEqual([board[i], board[i + 1], board[i + 2]])) {
+                isGameOver = true;
+                announceWinner(board[i]);
+                return;
+            }
+        }
+        // Check columns for win
+        for (let i = 0; i < 3; i++) {
+            if (allEqual([board[i], board[i + 3], board[i + 6]])) {
+                isGameOver = true;
+                announceWinner(board[i]);
+                return;
+            }
+        }
+        // Check diagonals for win
+        if (allEqual([board[0], board[4], board[8]]) || allEqual([board[2], board[4], board[6]])) {
+            isGameOver = true;
+            announceWinner(board[4]);
+            return;
+        }
+        // Check for a draw
+        if (!board.includes(0)) {
+            isGameOver = true;
+            alert("It's a draw!");
+        }
     }
-
+    function announceWinner(player) {
+        if (player === 1) {
+            alert("Player 1 Wins!!");
+        } else if (player === 2) {
+            alert("Player 2 Wins!!");
+        }
+    }
     function makeMove(index) {
         if (!isGameOver && gameBoard.isCellEmpty(index)) {
             gameBoard.updateCell(index, currentPlayer);
@@ -143,6 +183,9 @@ const players = (function() {
             player2Form.innerHTML=`
                 <h2>${player2}</h2>`;
         });
+    }
+    function getPlayer1Name(){
+        
     }
 
     return {
